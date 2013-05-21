@@ -7,17 +7,34 @@ import dna.system.timespan;
 
 class Game {
 private:
-    GameComponentCollection _components;        // { get; }
-    ContentManager          _content;           // { get; set; }
-    GraphicsDevice          _graphicsDevice;    // { get; }
-    TimeSpan                _inactiveSleepTime; // { get; set; }
-    bool                    _isActive;          // { get; }
-    bool                    _isFixedTimeStep;   // { get; set; }
-    bool                    _isMouseVisible;    // { get; set; }
-    LaunchParameters        _launchParameters;  // { get; }
-    GameServiceContainer    _services;          // { get; }
-    TimeSpan                _targetElapsedTime; // { get; set; }
-    GameWindow              _window;            // { get; }
+    const float defaultTargetFramesPerSecond = 60.0f;
+    immutable TimeSpan _maxElapsedTime = TimeSpan.fromMilliseconds(500);
+
+    IGraphicsDeviceService  _graphicsDeviceService;
+    bool                    _initialized = false;
+    bool                    _suppressDraw;
+
+    //Timer variables
+    TimeSpan                _accumulatedElapsedTime;
+    immutable GameTime      _gameTime = new GameTime();
+    Stopwatch               _gameTimer = Stopwatch.startNew();
+    
+    //Public variables
+    GameComponentCollection _components;            // { get; }
+    GraphicsDevice          _graphicsDevice;        // { get; }
+    IGraphicsDeviceManager  _graphicsDeviceManager; // { get; }
+    bool                    _isActive;              // { get; }
+    LaunchParameters        _launchParameters;      // { get; }
+    GameServiceContainer    _services;              // { get; }
+    GameWindow              _window;                // { get; }
+    ContentManager          _content;               // { get; set; }
+    TimeSpan                _inactiveSleepTime;     // { get; set; }
+    bool                    _isFixedTimeStep;       // { get; set; }
+    bool                    _isMouseVisible;        // { get; set; }
+    TimeSpan                _targetElapsedTime;     // { get; set; }
+    GamePlatform            _platform;              // { get; set; }
+
+    static Game             _instance;              // { get; private set; }
 
     //Private mutators
     @property
@@ -44,6 +61,10 @@ private:
 
         bool window(GameWindow n) {
             return _window = n;
+        }
+
+        bool instance(Game n) {
+            return _instance = n;
         }
     }
 
@@ -125,22 +146,12 @@ public:
         
     }
 
-    bool getIsActive()
-    {
-        return isActive;
-    }
-
     this()
     {
-
+        instance = this;
     }
 
-    void dispose()
-    {
-
-    }
-
-    void dispose(bool disposing)
+    ~this()
     {
 
     }
