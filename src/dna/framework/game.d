@@ -5,7 +5,7 @@ interface Game {
 public:
     void load();
     void update(double dt);
-    void draw(/*Graphics graphics*/);
+    void draw(/*Graphics g*/);
     void quit();
 }
 
