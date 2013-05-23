@@ -1,1 +1,1 @@
-module dna.framework.graphics.opengl;
+module dna.graphics.opengl;

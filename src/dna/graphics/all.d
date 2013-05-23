@@ -1,4 +1,4 @@
-module dna.framework.graphics.all;
+module dna.graphics.all;
 
-public import dna.framework.graphics.opengl;
+public import dna.graphics.opengl;
 
