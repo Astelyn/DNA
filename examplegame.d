@@ -1,6 +1,6 @@
 module examplegame;
 
-import dna.framework;
+import dna.framework.all;
 
 class MyGame : Game {
 public:
