@@ -4,7 +4,8 @@
 module dna.framework.dnaapp;
 
 import std.datetime;
-import dna.framework.graphics;
+import dna.framework.game;
+import dna.framework.graphics.all;
 
 class DNAApp {
 private:
