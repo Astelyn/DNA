@@ -4,6 +4,7 @@
 module dna.framework.dnaapp;
 
 import std.datetime;
+import dna.framework.graphics.opengl;
 
 class DNAApp {
 private:
@@ -22,6 +23,9 @@ public:
 
         totalElapsed = 0.0;
         lastDelta = 0.0;
+
+        //Initialize OpenGL
+        //Initialize OpenAL
     }
 
     //TODO: Add fixed timestep
