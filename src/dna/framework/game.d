@@ -1,5 +1,5 @@
 /* Game - the base interface for any DNA game */
-module dna.game;
+module dna.framework.game;
 
 interface Game {
 public:
