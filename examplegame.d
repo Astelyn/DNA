@@ -1,4 +1,4 @@
-module mygame;
+module examplegame;
 
 import dna.framework;
 
