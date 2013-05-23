@@ -4,7 +4,7 @@
 module dna.framework.dnaapp;
 
 import std.datetime;
-import dna.framework.graphics.opengl;
+import dna.framework.graphics;
 
 class DNAApp {
 private:
