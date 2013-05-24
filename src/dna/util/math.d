@@ -5,7 +5,7 @@ static class Math {
     /* Linearly interpolate from one value to another */
     static float lerp(float a, float b, float amount)
     {
-        
+        return 0.0f;
     }
 }
 
