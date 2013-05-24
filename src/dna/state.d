@@ -3,7 +3,7 @@ module dna.state;
 
 import dna.game;
 
-interface State {
+export interface State {
 public:
     void init();
     void update(Game game, double dt);

@@ -8,7 +8,7 @@ import dna.graphics.all;
 import dna.state;
 import dna.statemachine;
 
-class Game {
+export class Game {
 private:
     StateMachine states;
 
