@@ -10,8 +10,6 @@ import dna.statemachine;
 
 export class Game {
 private:
-    StateMachine states;
-
     bool   running = true;
     double totalElapsed;
     double lastDelta;
@@ -58,7 +56,7 @@ public:
 
     this(State state)
     {
-        states = new StateMachine(state);
+        StateMachine.push(state);
 
         totalElapsed = 0.0;
         lastDelta = 0.0;
@@ -72,8 +70,8 @@ public:
         while (running) {
             auto start = Clock.currTime().stdTime();
 
-            states.peek().update(this, lastDelta);
-            states.peek().draw(/*graphics*/);
+            StateMachine.peek().update(this, lastDelta);
+            StateMachine.peek().draw(/*graphics*/);
 
             auto end = Clock.currTime().stdTime();
             lastDelta = (end - start) / 10000.0;
@@ -81,22 +79,6 @@ public:
         }
 
         //Exit code here
-    }
-
-    //Helper functions to access the state machine
-    void push(State state)
-    {
-        states.push(state);
-    }
-
-    State pop()
-    {
-        return states.pop();
-    }
-
-    ref State peek()
-    {
-        return states.peek();
     }
 }
 

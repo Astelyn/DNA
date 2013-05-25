@@ -4,24 +4,28 @@ module dna.statemachine;
 import std.container;
 import dna.state;
 
-class StateMachine {
+export static class StateMachine {
 private:
-	StateNode front;
+	static StateNode front;
 
 public:
-	this(ref State state)
+	static void init(ref State state)
 	{
 		front = new StateNode(state);
 		peek().init();
 	}
 
-	void push(ref State state)
+	static void push(ref State state)
 	{
-		front.next = new StateNode(state);
-		front = front.next;
+		if (front !is null) {
+			front.next = new StateNode(state);
+			front = front.next;
+		} else {
+			front = new StateNode(state);
+		}
 	}
 
-	State pop()
+	static State pop()
 	{
 		auto ret = front.data;
 		front = front.prev;
@@ -29,7 +33,7 @@ public:
 		return ret;
 	}
 
-	ref State peek()
+	static ref State peek()
 	{
 		return front.data;
 	}
