@@ -1,1 +1,0 @@
-module dna.graphics.opengl;

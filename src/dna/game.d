@@ -15,7 +15,7 @@ private:
     double lastDelta;
 
     //Video variables
-    //Graphics graphics;
+    Graphics graphics;
     bool _fullscreen = false;
     bool _vsync;
     int  _width;
@@ -61,7 +61,8 @@ public:
         totalElapsed = 0.0;
         lastDelta = 0.0;
 
-        //Initialize OpenGL
+        graphics = new Graphics();
+        graphics.init();
         //Initialize OpenAL
     }
 
